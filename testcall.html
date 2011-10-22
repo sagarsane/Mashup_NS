@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <script src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+    <script src="jquery.phono.js"></script>
+  </head>
+  <body>
+
+    <input id="call" type="button" disabled="true" value="Loading..." />
+    <span id="status"></span>
+
+    <script>
+    $(document).ready(function(){
+      var phono = $.phono({
+        apiKey: "e801a843171995275c37ab13a2847bf4",
+        onReady: function() {
+          $("#call").attr("disabled", false).val("Call");
+        }
+      });
+
+      $("#call").click(function() {
+        $("#call").attr("disabled", true).val("Busy");
+        phono.phone.dial("480-427-5091", {
+          onRing: function() {
+            $("#status").html("Ringing");
+          },
+          onAnswer: function() {
+            $("#status").html("Answered");
+          },
+          onHangup: function() {
+            $("#call").attr("disabled", false).val("Call");
+            $("#status").html("Hangup");
+          }
+        });
+      });
+    })
+    </script>
+
+  </body>
+</html>
