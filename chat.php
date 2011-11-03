@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
   <title>Pusher Test</title>
-  <script src="http://js.pusherapp.com/1.9/pusher.min.js" type="text/javascript"></script>
+  <script src="pusherScript.js" type="text/javascript"></script>
   <script type="text/javascript">
     // Enable pusher logging - don't include this in production
     Pusher.log = function(message) {

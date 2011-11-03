@@ -1,7 +1,5 @@
 <?php
-
-	
-	$msg = "Hi Ankita, Chinmay: This message is sent from OUR NEW SMS API!!:)M sorry for sending the SMS, but I thought its the best way to let you guys knw this way:D";
+	$msg = "Hi SAGAR....";
 	$params = array( 'action' => 'create', 
 					 'token' => '086410b5705c344e8cc1b0bb042b6a4583cc689966ca86c36e59439e2c085db55a85eb0eacca6b9f6a60911f',
 					'to' => '9196751528',
