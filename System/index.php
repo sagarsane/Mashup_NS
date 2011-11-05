@@ -2,9 +2,12 @@
 <html>
 <head>
 	<title>Open Chat Room!</title>
+	<link rel="stylesheet" type="text/css" href="../../jQuery-Impromptu/default.css" media="screen" />
 	<script src="http://js.pusherapp.com/1.9/pusher.min.js" type="text/javascript"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 	<script src="../YoutubeFiles/video_browser.js" type="text/javascript"></script>
+	<script src="selectText.js" type="text/javascript"></script>
+	<script src="../../jQuery-Impromptu/jquery-impromptu.js" type="text/javascript"></script>
 	<script>
 	var username;
 	var pusher;
@@ -115,7 +118,7 @@
 			$('#chat_widget_button').hide(); //hide the chat button
 			$('#chat_widget_loader').show(); //show the chat loader gif
 			ajaxCall('send_message.php', { message : message }, function(msg) { //make an ajax call to send_message.php
-				ytvbp.presentVideo(message);
+				//ytvbp.presentVideo(message);
 				$('#chat_widget_input').val(''); //clear the text input
 				$('#chat_widget_loader').hide(); //hide the loader gif
 				$('#chat_widget_button').show(); //show the chat button
