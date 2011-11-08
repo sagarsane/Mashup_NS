@@ -1,7 +1,7 @@
 <?php
 
 	require 'init_DB.php';
-	$file = fopen("log.txt", "r");
+	$file = fopen("data.txt", "r");
 	while(!feof($file)){
 		$arow = fgets($file);
 		

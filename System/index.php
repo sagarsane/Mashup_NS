@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+
 	<title>Open Chat Room!</title>
 	<link rel="stylesheet" type="text/css" href="../../jQuery-Impromptu/default.css" media="screen" />
 	<script src="http://js.pusherapp.com/1.9/pusher.min.js" type="text/javascript"></script>
