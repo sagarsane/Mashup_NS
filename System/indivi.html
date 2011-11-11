@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+.titlec {
+  font-size: small;
+}
+ul.videos li {
+  float: left;
+  width: 10em;
+  margin-bottom: 1em;
+}
+ul.videos
+{
+  margin-bottom: 1em;
+  padding-left : 0em;
+  margin-left: 0em;
+  list-style: none;
+}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+   <script type="text/javascript" src="http://swfobject.googlecode.com/svn/trunk/swfobject/swfobject.js"></script>
+<script type="text/javascript">
+function loadVideo(playerUrl, autoplay) {
+  swfobject.embedSWF(
+      playerUrl + '&rel=1&border=0&fs=1&autoplay=' + 
+      (autoplay?1:0), 'player', '290', '250', '9.0.0', false, 
+      false, {allowfullscreen: 'true'});
+}
+<br />
+function showMyVideos2(data) {
+  var feed = data.feed;
+  var entries = feed.entry || [];
+  var html = ['<ul class="videos">'];
+      var entry = entries[0];
+    var title = entry.title.$t.substr(0, 20);
+    var thumbnailUrl = entries[0].media$group.media$thumbnail[0].url;
+    var playerUrl = entries[0].media$group.media$content[0].url;
+    html.push('<li onclick="loadVideo(\'', playerUrl, '\', true)">',
+              '<span class="titlec">', title, '...</span><br /><img src="', 
+              thumbnailUrl, '" width="130" height="97"/>', '</span></li>');
+  
+  html.push('</ul><br style="clear: left;"/>');
+  document.getElementById('player').innerHTML = html.join('');
+  if (entries.length > 0) {
+    loadVideo(entries[0].media$group.media$content[0].url, false);
+  }
+}</script>
+<script 
+    type="text/javascript" 
+    src="http://gdata.youtube.com/feeds/users/GoogleDevelopers/uploads?alt=json-in-script&callback=showMyVideos2&max-results=30">
+</script>
+	<form>
+    
+    	    <script src="https://www.google.com/jsapi"
+        type="text/javascript"></script>
+    <script language="Javascript" type="text/javascript">
+    //<![CDATA[
+   // google.load('search', '1',{"nocss" : true});
+ 
+ 
+  
+
+   
+  
+    function OnLoad() {
+		
+		 
+      // Create a search control
+      var searchControl = new google.search.SearchControl();
+
+      // Add in a full set of searchers
+      var localSearch = new google.search.LocalSearch();
+     // searchControl.addSearcher(localSearch);
+      searchControl.addSearcher(new google.search.WebSearch());
+     // searchControl.addSearcher(new google.search.VideoSearch());
+      //searchControl.addSearcher(new google.search.BlogSearch());
+      //searchControl.addSearcher(new google.search.NewsSearch());
+      //searchControl.addSearcher(new google.search.ImageSearch());
+      //searchControl.addSearcher(new google.search.BookSearch());
+      //searchControl.addSearcher(new google.search.PatentSearch());
+
+      // Set the Local Search center point
+      localSearch.setCenterPoint("New York, NY");
+      // tell the searcher to draw itself and tell it where to attach
+ searchControl.draw(document.getElementById("GoogleSear"));
+	
+
+      // execute an inital search
+      searchControl.execute(input_f.value);
+    }
+	function OnLoad1() {
+		
+      // Create a search control
+      var searchControl = new google.search.SearchControl();
+
+      // Add in a full set of searchers
+      var localSearch = new google.search.LocalSearch();
+     // searchControl.addSearcher(localSearch);
+     // searchControl.addSearcher(new google.search.WebSearch());
+     // searchControl.addSearcher(new google.search.VideoSearch());
+      //searchControl.addSearcher(new google.search.BlogSearch());
+      searchControl.addSearcher(new google.search.NewsSearch());
+      //searchControl.addSearcher(new google.search.ImageSearch());
+      //searchControl.addSearcher(new google.search.BookSearch());
+      //searchControl.addSearcher(new google.search.PatentSearch());
+
+      // Set the Local Search center point
+      localSearch.setCenterPoint("New York, NY");
+      // tell the searcher to draw itself and tell it where to attach
+ searchControl.draw(document.getElementById("Googlenews"));
+	
+
+      // execute an inital search
+      searchControl.execute(input_f.value);
+	     
+	  searchControl.setOnKeepCallback(this, MyKeepHandler);
+
+function MyKeepHandler(result) {
+  // clone the result html node
+  var node = result.html.cloneNode(true);
+
+  // attach it
+  var savedResults = document.getElementById("saved_results");
+  savedResults.appendChild(node);
+}
+    }
+    google.setOnLoadCallback(OnLoad);
+
+    //]]>
+	function loadme()
+{
+	
+	google.load('search','1.0',{'callback':OnLoad});
+}
+function loadme1()
+{
+	
+	google.load('search','1.0',{'callback':OnLoad1});
+}
+function loadall()
+{
+	loadme();
+	loadme1();
+	You();
+}
+
+    </script>
+	</form>
+ 
+</head>
+
+<body bgcolor="#FFFFFF">
+<table bgcolor="#CCFF66">
+<table width="728" height="102"  align="center" rules="none" bgcolor="#FFFFFF">
+  <tr>
+    <td align="right"><input id="input_f" type="text" size="40"/></td>
+    <td align="center"><button type="button" onclick="loadall()">Search</button></td>
+  </tr>
+  <tr>
+    <td><input  type="checkbox"/> Top 10 Universities</td>
+    <td><input  type="checkbox"/> Top 40 Universities</td>
+  </tr>
+  <tr>
+    <td><input  type="checkbox"/> Computer Science</td>
+    <td><input  type="checkbox"/> Electrical and Computer Engineering</td>
+  </tr>
+</table>
+<table width="600" align="center">
+  <tr>
+    <td align="center"><div  id="GoogleSear"> </div></td>
+    <td align="center"></td>
+  </tr>
+  <tr>
+    <td><div id="playerContainer" style="width: 20em; height: 180px; float: left;">
+    <object id="player"></object></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><div  id="saved_results"></td>
+    <td><div  id="Googlenews"> </div></td>
+  </tr>
+</table>
+</table>
+
+</body>
+</html>
