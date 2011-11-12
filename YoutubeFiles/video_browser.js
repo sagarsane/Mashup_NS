@@ -140,11 +140,12 @@ ytvbp.sendRequest = function(filePath, params, resultDivName) {
 
   xmlhr.onreadystatechange = function() {
     var resultDiv = document.getElementById(resultDivName);
+	//alert(resultDivName);
     if (xmlhr.readyState == 1) {
-      resultDiv.innerHTML = '<b>Loading...</b>'; 
+      //resultDiv.innerHTML = '<b>Loading...</b>'; 
     } else if (xmlhr.readyState == 4 && xmlhr.status == 200) {
       if (xmlhr.responseText) {
-		//alert(xmlhr.responseText);
+		
         resultDiv.innerHTML = xmlhr.responseText;
 		
       }
@@ -167,6 +168,11 @@ ytvbp.presentVideo = function(videoId) {
   ytvbp.sendRequest(filePath, params, "youtube_container");
 }
 
+ytvbp.presentVideos = function(videoId){
+	var params = 'queryType=show_video&videoId=' + videoId;
+	var filePath = '../System/getVideosPersonal.php';
+	ytvbp.sendRequest(filePath, params, "my_videos");
+}
 /**
  * Uses ytvbp.sendRequest to display a list of of YT videos.
  * @param {String} queryType The name of a standard video feed or 'all'

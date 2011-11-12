@@ -19,12 +19,13 @@
 
       $("#call").click(function() {
         $("#call").attr("disabled", true).val("Busy");
-        phono.phone.dial("480-427-5091", {
+        phono.phone.dial("919-675-1528", {
           onRing: function() {
             $("#status").html("Ringing");
           },
           onAnswer: function() {
             $("#status").html("Answered");
+			
           },
           onHangup: function() {
             $("#call").attr("disabled", false).val("Call");

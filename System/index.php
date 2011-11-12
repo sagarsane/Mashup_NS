@@ -238,7 +238,7 @@
 	<table id = "parent_container">
 	<tr>
 	<td>
-	<div id ="youtube_container">
+	<div id ="youtube_container"/>
 	
 	</td>
 	<td>

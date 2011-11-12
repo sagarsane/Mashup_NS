@@ -1,2 +1,25 @@
-1|2|3|4|5
-afa|sdfsd|sdffsd|aefsf
+1|Carnegie Mellon University|Pittsburgh, PA|35,700|www.cs.cmu.edu/|1293|4804275091|1
+1|Massachusetts Institute of Technology|Cambridge, MA|37,510|www.eecs.mit.edu|1360|4804275091|1
+1|Stanford University|Stanford, CA|39,840 |cs.stanford.edu/|1355|6143972763|1
+1|University of California--Berkeley|Berkeley, CA|15,036|www.cs.berkeley.edu/|1333|4804275091|1
+5|Cornell University|Ithaca, NY|29,500|www.cs.cornell.edu/|1348|6143972763|1
+5|University of Illinois--Urbana-Champaign|Urbana, IL|-|cs.illinois.edu/|-|9196751528|1
+7|University of Washington|Seattle, WA|-|www.cs.washington.edu/|-|4804275091|1
+8|Princeton University|Princeton, NJ|36,610|www.cs.princeton.edu/|1367|9196751528|1
+8|University of Texas--Austin|Austin, TX|15,510 |www.cs.utexas.edu|1306|4804275091|1
+10|Georgia Institute of Technology|Atlanta, GA|24,956 |www.cc.gatech.edu/|1317|6143972763|1
+11|California Institute of Technology|Pasadena, CA|33,324|www.cs.caltech.edu/|1370|9196751528|1
+11|University of Wisconsin--Madison|Madison, WI|-|http://www.cs.wisc.edu/|-|4804275091|1
+13|University of Michigan--Ann Arbor|Ann Arbor, MI|37,058|www.eecs.umich.edu/|-|9196751528|1
+14|University of California--Los Angeles|Los Angeles, CA|15,042|www.cs.ucla.edu/|1270|9196751528|1
+14|University of California--San Diego|La Jolla, CA|14,694|www.cs.ucsd.edu/|1308|6143972763|1
+14|University of Maryland--College Park|College Park, MD|-|www.cs.umd.edu|-|4804275091|1
+17|Columbia University|New York, NY|39,240|www.cs.columbia.edu/|1297|9196751528|1
+17|Harvard University|Cambridge, MA|33,696|www.seas.harvard.edu/teaching-learning/areas/computer-science|1359|9196751528|1
+17|University of Pennsylvania|Philadelphia, PA|24,720|www.cis.upenn.edu/|1272|6143972763|1
+20|Brown University|Providence, RI|38,048|www.cs.brown.edu/|-|4804275091|1
+20|Purdue University--West Lafayette|West Lafayette, IN|36,610|www.cs.purdue.edu/|1312|9196751528|1
+20|Rice University|Houston, TX|31,430 |www.cs.rice.edu/|1297|6143972763|1
+20|University of Massachusetts--Amherst|Amherst, MA|-|www.cs.umass.edu/|-|9196751528|1
+20|University of North Carolina--Chapel Hill|Chapel Hill, NC|26,674|www.cs.unc.edu/|1256|9196751528|1
+20|University of Southern California|Los Angeles, CA|24,912 |www.cs.usc.edu|1297|9196751528|1
