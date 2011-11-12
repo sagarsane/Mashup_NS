@@ -42,6 +42,5 @@
 		$xml = file_get_contents($query);
 		//echo $xml;
 	}
-	/*
-	*/
+	
 ?>
