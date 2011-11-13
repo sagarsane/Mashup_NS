@@ -52,7 +52,8 @@
 						ytvbp.presentVideo(tt);
 				}
 				else if(v == "map"){
-						$.prompt("Okay .. Searching map Location for: " + tt);
+						//$.prompt("Okay .. Searching map Location for: " + tt);
+						initialize(tt);
 				}
 				//st = "";
 			}

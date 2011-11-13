@@ -4,11 +4,50 @@
 
 	<title>Open Chat Room!</title>
 	<link rel="stylesheet" type="text/css" href="../../jQuery-Impromptu/default.css" media="screen" />
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true" >
+	</script>
+	<script type="text/javascript">
+		var map="";
+		var marker="";
+		var infowindow="";
+		function initialize(tt) {
+			infowindow = new google.maps.InfoWindow({
+			content: tt
+			});
+	
+			var latlng = new google.maps.LatLng(-34.397, 150.644);
+			var myOptions = {
+				zoom: 10,
+				center: latlng,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
+			map = new google.maps.Map(document.getElementById("map_container"),myOptions);
+			
+			var geocoder;
+			var sAdd = tt;
+			geocoder = new google.maps.Geocoder();
+			geocoder.geocode( { 'address': sAdd}, function(results, status) { 
+			if (status == google.maps.GeocoderStatus.OK) {
+				map.setCenter(results[0].geometry.location);
+				marker = new google.maps.Marker({
+					map: map,
+					position: results[0].geometry.location
+				});
+				google.maps.event.addListener(marker, 'click', function() {
+					infowindow.open(map,marker);
+				});
+
+			}
+			});
+		}
+	</script>
+
 	<script src="http://js.pusherapp.com/1.9/pusher.min.js" type="text/javascript"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 	<script src="../YoutubeFiles/video_browser.js" type="text/javascript"></script>
 	<script src="selectText.js" type="text/javascript"></script>
 	<script src="../../jQuery-Impromptu/jquery-impromptu.js" type="text/javascript"></script>
+
 	<script>
 	var username;
 	var pusher;
@@ -37,7 +76,7 @@
 	function updateOnlineCount() {
 		$('#chat_widget_counter').html($('.chat_widget_member').length);
 	}
-	
+	var tmp= "";
 	function newMessageCallback(data) {
 		if( has_chat == false ) { //if the user doesn't have chat messages in the div yet
 			$('#chat_widget_messages').html(''); //remove the contents i.e. 'chat messages go here'
@@ -46,9 +85,12 @@
 			
 		}
 		else{
-		$('#chat_widget_messages').append(data.message + '<br />');
-		}
+	
 		//alert("HERE");
+		$('#chat_widget_messages').append(data.message + '<br />');
+		
+		}
+		
 		
 	}
 	
@@ -106,7 +148,7 @@
 						});	
 						
 						nettuts_channel.bind('new_message', function(data) {
-							//alert("From New");
+							tmp ="new";
 							newMessageCallback(data);
 						});
 					});
@@ -119,12 +161,16 @@
 			$('#chat_widget_button').hide(); //hide the chat button
 			$('#chat_widget_loader').show(); //show the chat loader gif
 			ajaxCall('send_message.php', { message : message }, function(msg) { //make an ajax call to send_message.php
-				//ytvbp.presentVideo(message);
 				$('#chat_widget_input').val(''); //clear the text input
 				$('#chat_widget_loader').hide(); //hide the loader gif
 				$('#chat_widget_button').show(); //show the chat button
-				//alert("From Submit");
-				newMessageCallback(msg); //display the message with the newMessageCallback function
+				if(tmp!="new"){
+					newMessageCallback(msg); //display the message with the newMessageCallback function
+				}
+				else{ 
+					tmp = "";
+					//newMessageCallback(msg);
+				}
 				
 			});
 			return false;
@@ -139,6 +185,18 @@
 			border: 2px solid #AFAFAF;
 			height: 50%
 		
+		}
+		
+		#map_container {
+			width: 37%;
+			background-color: #F2F2F2;
+			border: 2px solid #AFAFAF;
+			height: 50%
+		
+		}
+		
+		#containers {
+			#padding: 20px;
 		}
 		
 		#parent_container {
@@ -162,7 +220,7 @@
 			background-color: #F2F2F2;
 			border: 2px solid #AFAFAF;
 			width: 60%;
-			font-size: 11px;
+			font-size: 13px;
 			font-family: "Lucida Grande", Arial, Helvetica, sans-serif;
 			position: fixed;
 			bottom: 20px;
@@ -238,8 +296,14 @@
 	<table id = "parent_container">
 	<tr>
 	<td>
-	<div id ="youtube_container"/>
-	
+	<table id="containers">
+	<tr>
+		<div id ="youtube_container"/>
+	</tr>
+	<tr>
+		<div id ="map_container"/>
+	</tr>
+	</table>
 	</td>
 	<td>
 	<div id="chat_widget_container">

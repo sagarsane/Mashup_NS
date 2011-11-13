@@ -147,6 +147,37 @@ ytvbp.sendRequest = function(filePath, params, resultDivName) {
       if (xmlhr.responseText) {
 		
         resultDiv.innerHTML = xmlhr.responseText;
+		if(resultDivName = "results"){
+			initialize();
+		}
+      }
+    } else if (xmlhr.readyState == 4) {
+      alert('Invalid response received - Status: ' + xmlhr.status);
+    }
+  }
+  xmlhr.send(params);
+}
+
+
+ytvbp.sendRequest1 = function(filePath, params, resultDivName) {
+  if (window.XMLHttpRequest) {
+    var xmlhr = new XMLHttpRequest();
+  } else {
+    var xmlhr = new ActiveXObject('MSXML2.XMLHTTP.3.0');
+  }
+        
+  xmlhr.open('POST', filePath, true);
+  xmlhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); 
+
+  xmlhr.onreadystatechange = function() {
+    var resultDiv = document.getElementById(resultDivName);
+	//alert(resultDivName);
+    if (xmlhr.readyState == 1) {
+      //resultDiv.innerHTML = '<b>Loading...</b>'; 
+    } else if (xmlhr.readyState == 4 && xmlhr.status == 200) {
+      if (xmlhr.responseText) {
+        resultDiv.innerHTML = xmlhr.responseText;
+//		initialize();
 		
       }
     } else if (xmlhr.readyState == 4) {
@@ -155,6 +186,7 @@ ytvbp.sendRequest = function(filePath, params, resultDivName) {
   }
   xmlhr.send(params);
 }
+
 
 /**
  * Uses ytvbp.sendRequest to display a YT video player and metadata for the
@@ -173,6 +205,13 @@ ytvbp.presentVideos = function(videoId){
 	var filePath = '../System/getVideosPersonal.php';
 	ytvbp.sendRequest(filePath, params, "my_videos");
 }
+
+ytvbp.presentResults = function (searchTerm){
+	var params = 'searchTerm='+searchTerm;
+	var filePath = '../System/getResults.php';
+	ytvbp.sendRequest1(filePath,params, "results");
+}
+
 /**
  * Uses ytvbp.sendRequest to display a list of of YT videos.
  * @param {String} queryType The name of a standard video feed or 'all'
