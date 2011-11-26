@@ -1,7 +1,6 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-
 	<title>Open Chat Room!</title>
 	<link rel="stylesheet" type="text/css" href="../../jQuery-Impromptu/default.css" media="screen" />
 	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true" >
@@ -73,11 +72,25 @@
 		});
 	}
 	
+	function fill_log(ajax_url, ajax_data) {
+		$.ajax({
+			type: "POST",
+			url: ajax_url,
+			data: "stuffing=" + ajax_data,
+		}).done(function( msg ) {
+			//alert(msg);
+		});
+	}
+	
+	
 	function updateOnlineCount() {
 		$('#chat_widget_counter').html($('.chat_widget_member').length);
 	}
 	var tmp= "";
+	var flag = 0;
 	function newMessageCallback(data) {
+		//alert("In Callback: " + data['original']);
+		
 		if( has_chat == false ) { //if the user doesn't have chat messages in the div yet
 			$('#chat_widget_messages').html(''); //remove the contents i.e. 'chat messages go here'
 			//$('#chat_widget_messages').append(data.message + '<br />');
@@ -149,28 +162,36 @@
 						
 						nettuts_channel.bind('new_message', function(data) {
 							tmp ="new";
-							newMessageCallback(data);
+							//alert("In Binding: "+ data.original);
+						//	alert("Called from New Message bind");
+							//if(flag == 0)
+							//{
+								newMessageCallback(data);
+								flag = 1;
+							//}
 						});
 					});
 				});
 			}
 		});
-		
+		var message = '';
 		$('#chat_widget_form').submit(function() {
-			var message = $('#chat_widget_input').val(); //get the value from the text input
+			message = $('#chat_widget_input').val(); //get the value from the text input
 			$('#chat_widget_button').hide(); //hide the chat button
 			$('#chat_widget_loader').show(); //show the chat loader gif
 			ajaxCall('send_message.php', { message : message }, function(msg) { //make an ajax call to send_message.php
 				$('#chat_widget_input').val(''); //clear the text input
 				$('#chat_widget_loader').hide(); //hide the loader gif
 				$('#chat_widget_button').show(); //show the chat button
-				if(tmp!="new"){
-					newMessageCallback(msg); //display the message with the newMessageCallback function
-				}
-				else{ 
-					tmp = "";
+				//if(tmp!="new"){
+					alert("In Submit: " + msg['original']);
+					fill_log("fill_log.php",msg['original']);
+					//newMessageCallback(msg); //display the message with the newMessageCallback function
+				//}
+				//else{ 
+				//	tmp = "";
 					//newMessageCallback(msg);
-				}
+				//}
 				
 			});
 			return false;

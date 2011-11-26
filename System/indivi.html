@@ -113,9 +113,9 @@ function OnLoad()
    
 
       // Set the Local Search center point
-      localSearch.setCenterPoint("New York, NY");
+      localSearch.setCenterPoint("Raleigh, NC");
       // tell the searcher to draw itself and tell it where to attach
- searchControl.draw(document.getElementById("GoogleSear"));
+	  searchControl.draw(document.getElementById("GoogleSear"));
 	
 
       // execute an inital search
@@ -134,7 +134,7 @@ function OnLoad1()
       searchControl.addSearcher(new google.search.NewsSearch());
 
       // Set the Local Search center point
-      localSearch.setCenterPoint("New York, NY");
+      localSearch.setCenterPoint("Raleigh, NC");
       // tell the searcher to draw itself and tell it where to attach
  searchControl.draw(document.getElementById("Googlenews"));
 	
@@ -150,12 +150,12 @@ function OnLoad1()
 function loadme()
 {
 	
-	google.load('search','1.0',{'callback':OnLoad});
+	google.load('search','1.0',{'callback':OnLoad},{style: google.loader.themes.SHINY});
 }
 function loadme1()
 {
 	
-	google.load('search','1.0',{'callback':OnLoad1});
+	google.load('search','1.0',{'callback':OnLoad1},{style: google.loader.themes.SHINY});
 }
 
 function loadall()
