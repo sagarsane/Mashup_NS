@@ -18,6 +18,7 @@ $message = $_POST['message'];
 $message = trim(filter_var($message, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES));
 
 //wrap it with the user's name when we display
+$orig_message = $message;
 $message = "<strong>&lt;{$_SESSION['username']}&gt;</strong> {$message}";
 
 //trigger the 'new_message' event in our channel, 'presence-nettuts'
@@ -31,6 +32,7 @@ $pusher->trigger(
 	
 echo json_encode(array(
 	'message' => $message,
+	'original' => $orig_message,
 	'success' => true
 ));
 exit();

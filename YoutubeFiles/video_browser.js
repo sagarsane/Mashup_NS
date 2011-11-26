@@ -177,8 +177,6 @@ ytvbp.sendRequest1 = function(filePath, params, resultDivName) {
     } else if (xmlhr.readyState == 4 && xmlhr.status == 200) {
       if (xmlhr.responseText) {
         resultDiv.innerHTML = xmlhr.responseText;
-//		initialize();
-		
       }
     } else if (xmlhr.readyState == 4) {
       alert('Invalid response received - Status: ' + xmlhr.status);
