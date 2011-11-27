@@ -1,10 +1,36 @@
 var map="";
   var marker="";
   var infowindow="";
-  function initialize(id) {
+
+
+var clicked = "0";
+    //$(document).ready(function(){
+	
+      
+      //});
+	  
+    //})
+
+  
+  function send(){
+	if(top10.checked == true && cs.checked == false){
+		ytvbp.presentResults(input_f.value,1,0);
+		
+	}
+	else if(top10.checked == false && cs.checked == true){
+		ytvbp.presentResults(input_f.value,0,1);
+	}
+	else if(top10.checked == true && cs.checked == true){
+		ytvbp.presentResults(input_f.value,1,1);
+	}
+	
+  }
+  
+  function initialize_map(id,name) {
+	//var name = nameid.split("|");
 	
 	infowindow = new google.maps.InfoWindow({
-		content: "NCSU"
+		content: name
 	});
 	
 	var latlng = new google.maps.LatLng(-34.397, 150.644);
@@ -19,7 +45,7 @@ var map="";
 		
 
 	var geocoder;
-	var sAdd = "North Carolina State University";
+	var sAdd = name;
 	geocoder = new google.maps.Geocoder();
 	geocoder.geocode( { "address": sAdd}, function(results, status) { 
 		if (status == google.maps.GeocoderStatus.OK) {

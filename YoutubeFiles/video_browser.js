@@ -204,8 +204,8 @@ ytvbp.presentVideos = function(videoId){
 	ytvbp.sendRequest(filePath, params, "my_videos");
 }
 
-ytvbp.presentResults = function (searchTerm){
-	var params = 'searchTerm='+searchTerm;
+ytvbp.presentResults = function (searchTerm,top10,cs){
+	var params = 'searchTerm='+searchTerm+'&top10='+top10+'&cs='+cs;
 	var filePath = '../System/getResults.php';
 	ytvbp.sendRequest1(filePath,params, "results");
 }
