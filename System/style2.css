@@ -150,6 +150,11 @@ border:none;
 #padding
 {
 	width:100%;
-	height:10%;
+	height:20%;
 	background:#CCCCCC;
+}
+#helpline
+{
+	width:20px;
+	height:20px;
 }
