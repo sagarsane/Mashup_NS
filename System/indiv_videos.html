@@ -1,0 +1,40 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Mash-up Search</title>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=yes" />
+</head>
+<body>
+<script src="../YoutubeFiles/video_browser.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<script type='text/javascript'>
+	function getURLParam(strParamName){
+	
+	//alert(strParamName);
+  var strReturn = "";
+  var strHref = window.location.href;
+  if ( strHref.indexOf("?") > -1 ){
+    var strQueryString = strHref.substr(strHref.indexOf("?")).toLowerCase();
+    var aQueryString = strQueryString.split("&");
+    for ( var iParam = 0; iParam < aQueryString.length; iParam++ ){
+      if ( aQueryString[iParam].indexOf(strParamName.toLowerCase() + "=") > -1 ){
+        var aParam = aQueryString[iParam].split("=");
+        strReturn = aParam[1];
+		//alert(strReturn);
+        break;
+      }
+    }
+  }
+  return unescape(strReturn);
+}
+
+
+$(document).ready(function(){
+	var name = getURLParam("univ_name");
+	document.title = "Latest Video Feed for " + name;
+	ytvbp.presentVideos(name);
+});
+
+</script>
+<div id="my_videos"/>
+</body>

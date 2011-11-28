@@ -24,14 +24,16 @@
         $("#call"+id).attr("disabled", true).val("Busy");
         phono.phone.dial(num, {
           onRing: function() {
-            $("#status").html("Ringing");
+            //$("#status").html("Ringing");
+			alert("Ringing");
           },
           onAnswer: function() {
             //$("#status").html("Answered");
           },
           onHangup: function() {
             $("#call"+id).attr("disabled", false).val("Call");
-            $("#status").html("Hangup");
+            //$("#status").html("Hangup");
+			alert("Hanging Up");
           }
         });
 	  
@@ -54,11 +56,12 @@
 
   <tr>
     <td><input name="top10" id="top10"  type="checkbox" value="Top10"/> Top 10 Universities</td>
-    <td><input type="checkbox"/> Top 30 Universities</td>
+    <!--<td><input type="checkbox"/> Top 30 Universities</td>-->
+	<td><input name="cs" id="cs" type="checkbox" value="CS"/> Computer Science</td>
   </tr>
   <tr>
-    <td><input name="cs" id="cs" type="checkbox" value="CS"/> Computer Science</td>
-    <td><input  type="checkbox"/> Electrical and Computer Engineering</td>
+    <!--<td><input name="cs" id="cs" type="checkbox" value="CS"/> Computer Science</td>-->
+    <!--<td><input  type="checkbox"/> Electrical and Computer Engineering</td>-->
   </tr>
 </table>
 <div id="results"/>

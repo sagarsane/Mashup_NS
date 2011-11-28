@@ -14,18 +14,18 @@
 					<table align="center">
 					<tr>
 						<td>
-						<a href="indivi.html?city='.$row[2].'&fees='.$row[3].'&link='.$row[4].'&gre='.$row[5].'"><h2>Rank: '.$row[0].' - '.$row[1].'</h2></a>
+						<a target="_blank" title="Click here to Get more information" href="indivi.html?number='.$row[6].'&univ_name='.$row[1].'&city='.$row[2].'&fees='.$row[3].'&link='.$row[4].'&gre='.$row[5].'"><h2>Rank: '.$row[0].' - '.$row[1].'</h2></a>
 						</td>
 					</tr>
 					</table>
 					<table align="center">
 					<tr>
 						<td align="center" >
-						<img src="YouTube-Logo.jpg" height="30" width="100" />
+						<img src="YouTube-Logo.jpg" height="30" width="100" title="Get the latest Youtube feed for '.$row[1].'" onclick="window.open(&quot;indiv_videos.html?univ_name='.$row[1].'&quot;,&quot;Videos for '.$row[1].'&quot;,&quot;width=400,height=200,toolbar=yes,location=yes,directories=yes,status=yes,menubar=yes,scrollbars=yes,copyhistory=yes,resizable=yes&quot;)"/>
 						</td>
 						<td width="30"></td>
 						<td align="center">
-						<img src="news.jpg" height="30" width="100"/>
+						<img src="news.jpg" height="30" width="100" title="Get the latest Google News feed for '.$row[1].'" onclick="window.open(&quot;indiv_news.html?univ_name='.$row[1].'&quot;,&quot;Videos for '.$row[1].'&quot;,&quot;width=400,height=200,toolbar=yes,location=yes,directories=yes,status=yes,menubar=yes,scrollbars=yes,copyhistory=yes,resizable=yes&quot;)"/>
 						</td>
 						<td width="30"></td>
 						<td align="center">
@@ -33,7 +33,7 @@
 						</td>
 						<td width="30"></td>
 						<td align="center">
-						<a href="subscribe.html?univ_name='.$row[1].'" onclick="return popitup("subscribe.html")" >Subscribe</a>
+						<a href="subscribe.html?univ_name='.$row[1].'" target = "_blank" onclick="return popitup("subscribe.html")" >Subscribe</a>
 						</td>
 						<td align="center">
 						

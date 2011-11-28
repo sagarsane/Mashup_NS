@@ -23,33 +23,7 @@
 </script>-->
 <script src="../YoutubeFiles/video_browser.js" type="text/javascript"></script>
 <script src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
-<script src="../jquery.phono.js"></script>
-    <script>
-    $(document).ready(function(){
-      var phono = $.phono({
-        apiKey: "e801a843171995275c37ab13a2847bf4",
-        onReady: function() {
-          $("#call").attr("disabled", false).val("Call " + input_f.value + "'s helpline");
-        }
-      });
 
-      $("#call").click(function() {
-        $("#call").attr("disabled", true).val("Busy");
-        phono.phone.dial("919-675-1528", {
-          onRing: function() {
-            $("#status").html("Ringing");
-          },
-          onAnswer: function() {
-            //$("#status").html("Answered");
-          },
-          onHangup: function() {
-            $("#call").attr("disabled", false).val("Call");
-            $("#status").html("Hangup");
-          }
-        });
-      });
-    })
-    </script>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true" >
 </script>
 <script type="text/javascript">
@@ -98,7 +72,94 @@
 </script>
 <script  src="https://www.google.com/jsapi" type="text/javascript">
 </script>
+<script src="../jquery.phono.js"></script>
 <script language="Javascript" type="text/javascript">
+	var number;
+    $(document).ready(function(){
+      var phono = $.phono({
+        apiKey: "e801a843171995275c37ab13a2847bf4",
+        onReady: function() {
+          $("#call").attr("disabled", false).val("Call " + input_f.value + "'s helpline");
+        }
+      });
+
+      $("#call").click(function() {
+        $("#call").attr("disabled", true).val("Busy");
+        phono.phone.dial(number, {
+          onRing: function() {
+            $("#status").html("Ringing");
+          },
+          onAnswer: function() {
+            //$("#status").html("Answered");
+          },
+          onHangup: function() {
+            $("#call").attr("disabled", false).val("Call");
+            $("#status").html("Hangup");
+          }
+        });
+      });
+    })
+
+
+	function getURLParam(strParamName){
+	
+	//alert(strParamName);
+  var strReturn = "";
+  var strHref = window.location.href;
+  if ( strHref.indexOf("?") > -1 ){
+    var strQueryString = strHref.substr(strHref.indexOf("?")).toLowerCase();
+    var aQueryString = strQueryString.split("&");
+    for ( var iParam = 0; iParam < aQueryString.length; iParam++ ){
+      if ( aQueryString[iParam].indexOf(strParamName.toLowerCase() + "=") > -1 ){
+        var aParam = aQueryString[iParam].split("=");
+        strReturn = aParam[1];
+		//alert(strReturn);
+        break;
+      }
+    }
+  }
+  return unescape(strReturn);
+}
+
+
+$(document).ready(function(){
+	checkIfRedirected();
+});
+
+
+function checkIfRedirected(){
+	
+	var univ_name = getURLParam("univ_name");
+	var city_state ="";
+	var fees = ""; 
+	var link = ""; 
+	var gre = "";
+	if(univ_name != "") //page was redirected, intiate all the searching done on the indivi.html page and populate results automatically
+	{	
+		city_state = getURLParam("city");
+		fees = getURLParam("fees");
+		link = getURLParam("link");
+		gre = getURLParam("gre");
+		number = getURLParam("number");
+		input_f.value = univ_name;
+		loadall();
+		var resultDiv = document.getElementById("fromPersonal");
+		resultDiv.innerHTML = "<span>University : " + univ_name + "</span>" +
+								"<br/>" + 
+								"<span>City/State : " + city_state + "</span>" +
+								"<br/>" + 
+								"<span>URL : <a target='_blank' href='http://"+link+"'>"+link+"</a></span>" +
+								"<br/>" + 
+								"<span>Average Fees ( Per year ) : $" + fees + "</span>" +
+								"<br/>" + 
+								"<span>Average GRE Score Required : " + gre + "</span>" +
+								"<br/>" ;
+		fromPersonal.style.display="";
+		
+	}
+}
+
+
 function OnLoad() 
 {
 		
@@ -199,6 +260,9 @@ function loadall()
     <span id="status"></span>
 </div>
 <table id="results" align="center">
+  <tr>
+	<div  id="fromPersonal" style="display:none"> </div>
+  </tr>
   <tr>
     <td align="right"><div  id="GoogleSear"> </div></td>
 	<td width="40"/>
