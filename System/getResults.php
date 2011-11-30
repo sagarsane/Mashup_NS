@@ -14,7 +14,7 @@
 					<table align="center">
 					<tr>
 						<td>
-						<a target="_blank" title="Click here to Get more information" href="indivi.html?number='.$row[6].'&univ_name='.$row[1].'&city='.$row[2].'&fees='.$row[3].'&link='.$row[4].'&gre='.$row[5].'"><h2>Rank: '.$row[0].' - '.$row[1].'</h2></a>
+						<a target="_blank" title="Click here to Get more information" href="university.html?number='.$row[6].'&univ_name='.$row[1].'&city='.$row[2].'&fees='.$row[3].'&link='.$row[4].'&gre='.$row[5].'"><h2>Rank: '.$row[0].' - '.$row[1].'</h2></a>
 						</td>
 					</tr>
 					</table>

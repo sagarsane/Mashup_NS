@@ -147,7 +147,7 @@ ytvbp.sendRequest = function(filePath, params, resultDivName) {
       if (xmlhr.responseText) {
 		
         resultDiv.innerHTML = xmlhr.responseText;
-		if(resultDivName = "results"){
+		if(resultDivName == "results"){
 			initialize();
 		}
       }
@@ -207,7 +207,7 @@ ytvbp.presentVideos = function(videoId){
 ytvbp.presentResults = function (searchTerm,top10,cs){
 	var params = 'searchTerm='+searchTerm+'&top10='+top10+'&cs='+cs;
 	var filePath = '../System/getResults.php';
-	ytvbp.sendRequest1(filePath,params, "results");
+	ytvbp.sendRequest1(filePath,params, "results_generic");
 }
 
 /**
