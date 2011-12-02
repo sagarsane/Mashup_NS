@@ -11,7 +11,7 @@
 		
 		$videoUrl = "http://www.youtube.com/v/".$entry->getVideoId()."?version=3&f=videos&app=youtube_gdata";
 		
-		echo '<object width="100%" height="100%">
+		echo '<object width="200" height="200">
 			<param name="movie" value="'.$entry->getVideoId().'"&autoplay=1"></param>
 			<param name="wmode" value="transparent"></param>
 			<embed src="'.$videoUrl.'"&autoplay=1" type="application/x-shockwave-flash" wmode="transparent"

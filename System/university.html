@@ -14,9 +14,9 @@
   var marker="";
   var infowindow="";
   function initialize() {
-	//infowindow = new google.maps.InfoWindow({
-		//content: input_f.value
-	//});
+	infowindow = new google.maps.InfoWindow({
+		content: input_f.value
+	});
 	
 	var latlng = new google.maps.LatLng(-34.397, 150.644);
     var myOptions = {
@@ -39,7 +39,7 @@
 					position: results[0].geometry.location
 				});
 				google.maps.event.addListener(marker, 'click', function() {
-	//				infowindow.open(map,marker);
+					infowindow.open(map,marker);
 				});
 
 				
@@ -62,6 +62,7 @@
         apiKey: "e801a843171995275c37ab13a2847bf4",
         onReady: function() {
           $("#call").attr("disabled", false).val("Call " + input_f.value + "'s helpline");
+		alert("HERE");
         }
       });
 
@@ -75,7 +76,7 @@
             //$("#status").html("Answered");
           },
           onHangup: function() {
-            $("#call").attr("disabled", false).val("Call");
+            $("#call").attr("disabled", false).val("Call " + input_f.value + "'s helpline");
             $("#status").html("Hangup");
           }
         });
@@ -169,11 +170,20 @@ function OnLoad()
 	// Add in a full set of searchers
     var localSearch = new google.search.LocalSearch();
     // searchControl.addSearcher(localSearch);
-    searchControl.addSearcher(new google.search.WebSearch());
+	var options = new google.search.SearcherOptions();
+	options.setExpandMode(google.search.SearchControl.EXPAND_MODE_PARTIAL);
+    searchControl.addSearcher(new google.search.WebSearch(),options);
+	searchControl.addSearcher(new google.search.VideoSearch(),options);
+	searchControl.addSearcher(new google.search.BlogSearch(),options);
     // Set the Local Search center point
     localSearch.setCenterPoint("New York, NY");
     // tell the searcher to draw itself and tell it where to attach
-	searchControl.draw(document.getElementById("GoogleSear"));
+	
+	var drawOptions = new google.search.DrawOptions();
+	// tell the searcher to draw itself in linear mode
+	drawOptions.setDrawMode(google.search.SearchControl.DRAW_MODE_TABBED);
+	
+	searchControl.draw(document.getElementById("GoogleSear"),drawOptions);
 	// execute an inital search
     searchControl.execute(input_f.value);
 }
@@ -184,7 +194,10 @@ function OnLoad1()
     var searchControl = new google.search.SearchControl();
     // Add in a full set of searchers
     var localSearch = new google.search.LocalSearch();
-    searchControl.addSearcher(new google.search.NewsSearch());
+	var options = new google.search.SearcherOptions();
+	options.setExpandMode(google.search.SearchControl.EXPAND_MODE_PARTIAL);
+
+    searchControl.addSearcher(new google.search.NewsSearch(),options);
     // Set the Local Search center point
     localSearch.setCenterPoint("New York, NY");
     // tell the searcher to draw itself and tell it where to attach
@@ -209,7 +222,7 @@ function loadall()
 	loadme();
 	loadme1();
 	ytvbp.presentVideos(input_f.value);
-	//call.style.display = '';
+	call.style.display = '';
 	
 }
 
@@ -238,8 +251,9 @@ function IndividualOrGeneric(){
 	}
 	else{ //normal input taken from the TextBox
 		loadall();
-		//call.style.display = "";
-		//call.value = "Call " + input_f.value + "'s helpline";
+		call.style.display = "";
+		call.disabled = false;
+		call.value = "Call " + input_f.value + "'s helpline";
 	}
 }
 </script>
@@ -293,7 +307,7 @@ function popitup(url) {
 </div>
 <div id="data">
 <div id="check-box" >
-<table>
+<table align ="center">
 	<tr>
 	<td>
 		<table align="center">
@@ -305,14 +319,17 @@ function popitup(url) {
 		<!--<tr height="20">-->
 		</table>
 	</td>
-	<td>
-	<div id="helpline">
-		<input id="call" type="button" disabled="true" value="Loading..." style="display:none"/>
-		<span id="status"></span>
-	</div>
-	</td>
 	</tr>
 </table>
+<table align ="center">
+	<tr>
+	<div id="helpline">
+		<input id="call" name="call" type="button" disabled="true" value="Loading..." style="display:none;"/>
+		<span id="status"></span>
+	</div>
+	</tr>
+</table>
+
 </div>
 <div id="api">
 <table id="results" align="center">
@@ -325,15 +342,15 @@ function popitup(url) {
   </tr>
 </tr>
   <tr>
-    <td align="right"><div  id="GoogleSear" > </div></td>
-	<td width="40"/>
-    <td align="left"><div  id="map_canvas"/></td>
+    <td align="center" ><div style ="overflow: auto; height: 400px; width: 400px" id="GoogleSear" > </div></td>
+	<td width="10"/>
+    <td align="center" height="400" width = "400" ><div id="map_canvas"/></td>
   </tr>
   <tr height="100"/>
   <tr>
-    <td align="right"><div  id="my_videos"/></td>
-	<td width="40"/>
-    <td align="left"><div  id="Googlenews"> </div></td>
+    <td align="center"><div style ="overflow: auto; height: 400px; width: 400px" id="my_videos"/></td>
+	<td width="10"/>
+    <td align="center"><div style ="overflow: auto; height: 400px; width: 400px" id="Googlenews"> </div></td>
   </tr>
 </table>
 

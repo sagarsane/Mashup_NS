@@ -49,7 +49,7 @@
 			function videoOrmap(v,m,f){
 				if(v == "video"){
 						$.prompt("Okay .. Searching Video for: " + tt);
-						ytvbp.presentVideo(st);
+						ytvbp.presentVideo(tt);
 				}
 				else if(v == "map"){
 						//$.prompt("Okay .. Searching map Location for: " + tt);

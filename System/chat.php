@@ -184,7 +184,7 @@
 				$('#chat_widget_loader').hide(); //hide the loader gif
 				$('#chat_widget_button').show(); //show the chat button
 				//if(tmp!="new"){
-					alert("In Submit: " + msg['original']);
+					//alert("In Submit: " + msg['original']);
 					fill_log("fill_log.php",msg['original']);
 					//newMessageCallback(msg); //display the message with the newMessageCallback function
 				//}
